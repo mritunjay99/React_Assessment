@@ -4,6 +4,7 @@ import { Table } from "antd";
 
 const Home = () => {
   const houseInfo = getAllHouseInfo();
+  
   console.log(houseInfo);
   const dataSource = houseInfo;
   const columns = [
@@ -30,9 +31,12 @@ const Home = () => {
   ];
   return (
     <>
-      {houseInfo && (
-        <Table dataSource={dataSource} columns={columns} bordered />
-      )}
+      {houseInfo && <Table
+        dataSource={dataSource}
+        columns={columns}
+        rowKey={({ record }) => record?.name}
+        bordered
+      />}
     </>
   );
 };

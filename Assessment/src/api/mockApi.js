@@ -1,8 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addData } from "../stores/dataSlice";
 
 const getAllHouseInfo = () => {
   const [houseInfo, setHouseInfo] = useState(null);
+  const dispatch = useDispatch();
   useEffect(() => {
     fetchAll();
   }, []);
@@ -11,6 +14,7 @@ const getAllHouseInfo = () => {
     const json = await data.json();
 
     setHouseInfo(json);
+    dispatch(addData(json));
   };
   return houseInfo;
 };
