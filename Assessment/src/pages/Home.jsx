@@ -4,8 +4,8 @@ import { Table } from "antd";
 
 const Home = () => {
   const houseInfo = getAllHouseInfo();
-  
-  console.log(houseInfo);
+
+  // console.log(houseInfo);
   const dataSource = houseInfo;
   const columns = [
     {
@@ -31,12 +31,19 @@ const Home = () => {
   ];
   return (
     <>
-      {houseInfo && <Table
-        dataSource={dataSource}
-        columns={columns}
-        rowKey={({ record }) => record?.name}
-        bordered
-      />}
+      {houseInfo && (
+        <Table
+          dataSource={dataSource}
+          columns={columns}
+          rowKey={({ record }) => record?.name}
+          bordered
+          pagination={{ pageSize: 5 }}
+          scroll={{ x: "max-content" }}
+          rowClassName={() => "custom-row"}
+          title={() => <h3 style={{ margin: 0 }}>🏠 House List</h3>}
+          footer={() => `Total Records: ${dataSource.length}`}
+        />
+      )}
     </>
   );
 };
